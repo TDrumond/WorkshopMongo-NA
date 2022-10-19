@@ -13,7 +13,8 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/users")
 public class UserResource {
-  @Autowired private UserService service;
+  @Autowired
+  private UserService service;
 
   // @GetMapping // Outra forma de notação.
   @RequestMapping(method = RequestMethod.GET)
