@@ -1,5 +1,6 @@
 package estudos.br.com.tekqa.WorkshopMongo.resources;
 
+import estudos.br.com.tekqa.WorkshopMongo.domain.Post;
 import estudos.br.com.tekqa.WorkshopMongo.domain.User;
 import estudos.br.com.tekqa.WorkshopMongo.dto.UserDTO;
 import estudos.br.com.tekqa.WorkshopMongo.services.UserService;
@@ -8,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.swing.text.html.parser.Entity;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -52,10 +52,16 @@ public class UserResource {
   }
 
   @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-  public ResponseEntity<Void> update(@RequestBody UserDTO objDto,@PathVariable String id) {
-   User obj = service.fromDTO(objDto);
-   obj.setId(id);
-   obj = service.update(obj);
-   return ResponseEntity.noContent().build();
+  public ResponseEntity<Void> update(@RequestBody UserDTO objDto, @PathVariable String id) {
+    User obj = service.fromDTO(objDto);
+    obj.setId(id);
+    obj = service.update(obj);
+    return ResponseEntity.noContent().build();
+  }
+
+  @RequestMapping(value = "/{id}/posts", method = RequestMethod.GET)
+  public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+    User obj = service.findById(id);
+    return ResponseEntity.ok().body(obj.getPosts());
   }
 }
