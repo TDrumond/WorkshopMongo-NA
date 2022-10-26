@@ -1,9 +1,12 @@
 package estudos.br.com.tekqa.WorkshopMongo.domain;
 
 import estudos.br.com.tekqa.WorkshopMongo.dto.AuthorDTO;
+import estudos.br.com.tekqa.WorkshopMongo.dto.CommentDTO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Post implements Serializable {
   public static final long serialVersionUID = 1L;
@@ -12,6 +15,8 @@ public class Post implements Serializable {
   private String title;
   private String body;
   private AuthorDTO author;
+
+  private List<CommentDTO> comments = new ArrayList<>();
 
   public Post() {}
 
@@ -61,6 +66,14 @@ public class Post implements Serializable {
 
   public void setAuthor(AuthorDTO author) {
     this.author = author;
+  }
+
+  public List<CommentDTO> getComments() {
+    return comments;
+  }
+
+  public void setComments(List<CommentDTO> comments) {
+    this.comments = comments;
   }
 
   @Override
