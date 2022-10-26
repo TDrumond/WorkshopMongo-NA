@@ -4,11 +4,14 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
-@Document(collection = "user") // se não por o collection = nome tentara mapear usando o mesmo nome da classe, porém tudo em minusculo.
+
+@Document(
+    collection =
+        "user") // se não por o collection = nome tentara mapear usando o mesmo nome da classe,
+                // porém tudo em minusculo.
 public class User implements Serializable {
   private static final long serialVersionUID = 1L;
-  @Id
-  private String id;
+  @Id private String id;
   private String name;
   private String email;
 
