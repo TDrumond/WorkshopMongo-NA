@@ -1,19 +1,25 @@
 package estudos.br.com.tekqa.WorkshopMongo.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Document(
     collection =
         "user") // se não por o collection = nome tentara mapear usando o mesmo nome da classe,
-                // porém tudo em minusculo.
+// porém tudo em minusculo.
 public class User implements Serializable {
   private static final long serialVersionUID = 1L;
   @Id private String id;
   private String name;
   private String email;
+
+  @DBRef (lazy = true) // garantique os posts só serão carregados se forem acessados de forma explicita.
+  private List<Post> posts = new ArrayList<>();
 
   public User() {}
 
@@ -45,6 +51,14 @@ public class User implements Serializable {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public List<Post> getPosts() {
+    return posts;
+  }
+
+  public void setPosts(List<Post> posts) {
+    this.posts = posts;
   }
 
   @Override
