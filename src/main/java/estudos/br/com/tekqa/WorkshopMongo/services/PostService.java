@@ -1,7 +1,6 @@
 package estudos.br.com.tekqa.WorkshopMongo.services;
 
 import estudos.br.com.tekqa.WorkshopMongo.domain.Post;
-import estudos.br.com.tekqa.WorkshopMongo.domain.User;
 import estudos.br.com.tekqa.WorkshopMongo.repository.PostRepository;
 import estudos.br.com.tekqa.WorkshopMongo.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,4 +19,7 @@ public class PostService {
     return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
   }
 
+  public List<Post> findByTitle(String text) {
+    return repo.findByTitleContainingIgnoreCase(text);
+  }
 }
