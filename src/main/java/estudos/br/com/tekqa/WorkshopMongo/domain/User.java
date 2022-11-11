@@ -11,14 +11,15 @@ import java.util.List;
 @Document(
     collection =
         "user") // se não por o collection = nome tentara mapear usando o mesmo nome da classe,
-// porém tudo em minusculo.
+                // porém tudo em minusculo.
 public class User implements Serializable {
   private static final long serialVersionUID = 1L;
   @Id private String id;
   private String name;
   private String email;
 
-  @DBRef (lazy = true) // garantique os posts só serão carregados se forem acessados de forma explicita.
+  @DBRef(
+      lazy = true) // garante que os posts só serão carregados se forem acessados de forma explicita.
   private List<Post> posts = new ArrayList<>();
 
   public User() {}
